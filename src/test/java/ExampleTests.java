@@ -14,10 +14,10 @@ public class ExampleTests {
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/");
         driver.manage().window().maximize();
-        WebElement button=driver.findElement(By.xpath("//ul/li/a"));
+        WebElement button=driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li[11]/a"));
         button.click();
-        WebElement text = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
-        Assert.assertEquals(text.getText(),"No Test");
+        WebElement text = driver.findElement(By.xpath("//*[@id=\"dropdown\"]/option[2]"));
+        Assert.assertEquals(text.getText(),"Option 1");
 
 
 
