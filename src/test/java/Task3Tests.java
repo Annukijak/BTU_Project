@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -7,16 +8,16 @@ public class Task3Tests {
 
     @Test
     public void statusCode() {
-        int statusCode=
-                given()
-                        .when()
-                        .get("https://bookstore.toolsqa.com/BookStore/v1/Books")
-                        .assertThat()
-                        .getStatusCode(200);
+        int statusCode= given()
+                .queryParam("title","Git Pocket Guid")
+                .when()
+                .get("https://bookstore.toolsqa.com/BookStore/v1/Books")
+                .getStatusCode();
+        Assert.assertEquals(statusCode,200);
     }
 
     @Test
-    public void bookIsbn {
+    public void bookIsbn() {
         given()
                 .when()
                 .get("https://bookstore.toolsqa.com/BookStore/v1/Books")
@@ -25,11 +26,11 @@ public class Task3Tests {
     }
 
     @Test
-    public void pageCount {
+    public void pageCount() {
         given()
                 .when()
                 .get("https://bookstore.toolsqa.com/BookStore/v1/Books")
                 .then()
-                .body("books[0,1].pages", hasItems(234);
+                .body("books[0,1].pages", hasItems(234));
     }
 }
